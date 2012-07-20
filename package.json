@@ -1,0 +1,15 @@
+{
+    "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
+    "name": "affilinet",
+    "description": "simple interface to the affilinet api",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/snd/node-affilinet.git"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "nodeunit": "0.7.4"
+    }
+}
