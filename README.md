@@ -1,6 +1,6 @@
 # affilinet
 
-node wrapper for the affilinet php interface
+node wrapper for the affilinet php soap examples
 
 **this is very early work in progress**
 
