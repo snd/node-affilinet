@@ -1,6 +1,6 @@
 # affilinet
 
-node wrapper around some php code which talks to the affilinet soap webservices
+wraps some php code which talks to the affilinet soap webservices
 
 **this is very early work in progress**
 
@@ -26,7 +26,7 @@ affilinet.getShops (err, shops) ->
 
 ### API
 
-- `getShops(cb)` calls `cb` with an array of shop objects:
+- `getShops(cb)` calls `cb` with an array of [shop objects](http://developer.affili.net/PortalData/1/Resources/pdfs/product_web_services_v3.0/GetShopListV3.pdf):
     - number `ShopId`
     - string `ShopLink` that is the link to the landing page of the shop
     - string `ShopTitle`
@@ -39,9 +39,7 @@ affilinet.getShops (err, shops) ->
     - number `ProductCount`
     - number `ProgramId` that is the id of the programs this shop belongs to
 
-- [Specification](http://developer.affili.net/PortalData/1/Resources/pdfs/product_web_services_v3.0/GetShopListV3.pdf)
-
-- `getPrograms(cb)` calls `cb` with an array of program objects:
+- `getPrograms(cb)` calls `cb` with an array of [program objects](http://developer.affili.net/Portaldata/1/Resources/pdfs/Documentation_GetMyPrograms.pdf):
     - number `ProgramId`
     - string `ProgramTitle`
     - string `Description`
@@ -65,6 +63,5 @@ affilinet.getShops (err, shops) ->
             - number `MinRate`
             - number `MaxRate`
     - string `Limitations`
-- [Specification](http://developer.affili.net/Portaldata/1/Resources/pdfs/Documentation_GetMyPrograms.pdf)
 
 ### License: MIT
