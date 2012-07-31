@@ -4,15 +4,21 @@ module.exports = class
 
     constructor: (@options) ->
 
-    getPrograms: (cb) ->
+    getPrograms: (displayOptions, query, cb) ->
 
-        file = "#{__dirname}/php/get-my-programs.php"
+        file = "#{__dirname}/php/get-programs.php"
 
-        args = [@options.publisherId, @options.publisherWebservicePassword]
+        args = [
+            @options.publisherId
+            @options.publisherWebservicePassword
+            JSON.stringify displayOptions
+            JSON.stringify query
+        ]
 
         execFile file, args, {maxBuffer: 5000*1024}, (err, stdout, stderr) ->
             return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
-            cb null, JSON.parse(stdout)?.Programs?.ProgramSummary
+            programs = JSON.parse(stdout).ProgramCollection?.Program
+            cb null, programs || []
 
     getShops: (cb) ->
 
