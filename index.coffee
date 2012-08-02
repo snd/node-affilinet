@@ -1,13 +1,20 @@
 {execFile} = require 'child_process'
 
+lift = (cb, f) -> (err, result) ->
+    if err? then cb err else cb null, f result
+
 module.exports = class
 
     constructor: (@options) ->
 
+    _exec: (filename, args, cb) ->
+        file = "#{__dirname}/php/#{filename}.php"
+
+        execFile file, args, {maxBuffer: 5000*1024}, (err, stdout, stderr) ->
+            return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
+            cb null, JSON.parse stdout
+
     getPrograms: (displayOptions, query, cb) ->
-
-        file = "#{__dirname}/php/get-programs.php"
-
         args = [
             @options.publisherId
             @options.publisherWebservicePassword
@@ -15,25 +22,15 @@ module.exports = class
             JSON.stringify query
         ]
 
-        execFile file, args, {maxBuffer: 5000*1024}, (err, stdout, stderr) ->
-            return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
-            programs = JSON.parse(stdout).ProgramCollection?.Program
-            cb null, programs || []
+        @_exec 'get-programs', args, lift cb, (results) ->
+            results?.ProgramCollection?.Program || []
 
     getShops: (cb) ->
-
-        file = "#{__dirname}/php/get-shop-list-v3.php"
-
         args = [@options.publisherId, @options.productWebservicePassword]
 
-        execFile file, args, (err, stdout, stderr) ->
-            return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
-            cb null, JSON.parse(stdout)?.Shops?.Shop
+        @_exec 'get-shop-list-v3', args, lift cb, (results) -> results?.Shops?.Shop
 
     getSalesForDayRange: (startDate, endDate, cb) ->
-
-        file = "#{__dirname}/php/get-sales-leads-by-sub-id-per-day.php"
-
         args = [
             @options.publisherId
             @options.publisherWebservicePassword
@@ -41,6 +38,4 @@ module.exports = class
             endDate.getTime()
         ]
 
-        execFile file, args, (err, stdout, stderr) ->
-            return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
-            cb null, JSON.parse(stdout)
+        @_exec 'get-sales-leads-by-sub-id-per-day', args, cb
