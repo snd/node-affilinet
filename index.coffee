@@ -14,6 +14,17 @@ module.exports = class
             return cb new Error "stdout: #{stdout}, stderr: #{stderr} err: #{err.toString()}" if err?
             cb null, JSON.parse stdout
 
+    searchCreatives: (displayOptions, query, cb) ->
+        args = [
+            @options.publisherId
+            @options.publisherWebservicePassword
+            JSON.stringify displayOptions
+            JSON.stringify query
+        ]
+
+        @_exec 'search-creatives', args, lift cb, (results) ->
+            results?.CreativeCollection?.Creative || []
+
     getPrograms: (displayOptions, query, cb) ->
         args = [
             @options.publisherId
