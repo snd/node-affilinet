@@ -41,12 +41,13 @@ module.exports = class
 
         @_exec 'get-shop-list-v3', args, lift cb, (results) -> results?.Shops?.Shop
 
-    getSalesForDayRange: (startDate, endDate, cb) ->
+    getSalesLeadsBySubIdPerDay: (startDate, endDate, cb) ->
         args = [
             @options.publisherId
             @options.publisherWebservicePassword
-            startDate.getTime()
-            endDate.getTime()
+            Math.floor(startDate.getTime() / 1000)
+            Math.floor(endDate.getTime() / 1000)
         ]
 
-        @_exec 'get-sales-leads-by-sub-id-per-day', args, cb
+        @_exec 'get-sales-leads-by-sub-id-per-day', args, lift cb, (results) ->
+            results?.ArrayOfSalesLeadsBySubIdRecords?.SalesLeadsBySubIdRecords?.SalesLeadsBySubIdRecord

@@ -6,8 +6,8 @@ define ("WSDL_STATS",  "https://api.affili.net/V2.0/PublisherStatistics.svc?wsdl
 
 $Username = $argv[1]; // the publisher ID
 $Password = $argv[2]; // the publisher data web services password
-$StartDate = $argv[3];
-$StartDate = $argv[4];
+$StartTimestamp = $argv[3];
+$EndTimestamp = $argv[4];
 
 $SOAP_LOGON = new SoapClient(WSDL_LOGON);
 $Token      = $SOAP_LOGON->Logon(array(
@@ -18,8 +18,8 @@ $Token      = $SOAP_LOGON->Logon(array(
 
 $params = array(
     'ProgramId' => '0',
-    'StartDate' => intval($StartDate),
-    'EndDate' => intval($EndDate)
+    'StartDate' => intval($StartTimestamp),
+    'EndDate' => intval($EndTimestamp)
 );
 
 $SOAP_REQUEST = new SoapClient(WSDL_STATS);
