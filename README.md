@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/snd/node-affilinet.png)](http://travis-ci.org/snd/node-affilinet)
 # affilinet
 
 wraps some php code which talks to the affilinet soap webservices
