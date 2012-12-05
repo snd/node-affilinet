@@ -1,8 +1,8 @@
-# affilinet
+# node-affilinet
 
-affilinet wraps some php code that talks to the affilinet soap webservices
+node-affilinet wraps some php code that talks to the affilinet soap webservices
 
-affilinet calls out to the `php` command. it must be installed.
+node-affilinet calls out to the `php` command. it must be installed.
 
 **this is very early work in progress**
 
