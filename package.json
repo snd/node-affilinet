@@ -1,15 +1,30 @@
 {
-    "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
     "name": "affilinet",
-    "description": "simple interface to the affilinet api",
     "version": "0.0.5",
+    "description": "affilinet wraps some php code that talks to the affilinet soap webservices",
+    "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
+    "homepage": "http://github.com/snd/node-affilinet",
+    "author": {
+        "name": "Maximilian Krüger",
+        "email": "kruemaxi@gmail.com",
+        "url": "http://github.com/snd"
+    },
+    "bugs": {
+        "url": "http://github.com/snd/node-affilinet/issues",
+        "email": "kruemaxi@gmail.com"
+    },
     "repository": {
         "type": "git",
         "url": "git://github.com/snd/node-affilinet.git"
     },
-    "dependencies": {
+    "licenses": {
+        "type": "MIT",
+        "url": "git://github.com/snd/node-affilinet/LICENSE"
     },
-    "devDependencies": {
-        "nodeunit": "0.8.4"
+    "engines": {
+        "node": ">=0.8.5"
+    },
+    "dependencies": {
+        "coffee-script": "1.4.0"
     }
 }
