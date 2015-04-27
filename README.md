@@ -1,4 +1,4 @@
-# node-affilinet
+# node-affilinet (DISCONTINUED!)
 
 node-affilinet wraps some php code that talks to the affilinet soap webservices
 
